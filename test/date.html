@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type='text/html'>
+    {{if data}}
+        {{each data as value}}
+            <div>
+                <span>value</span>
+            </div>
+        {{/each}}
+    {{/if}}
+
+    var source='';
+    var render=template.compile(source); <!--根据模板渲染函数-->
+    var html=render(XX);
+
+</script>
+<script>
+    var t=new Date();
+//    t.setTime(55555+'000');
+    var date=t.getFullYear()+'年'+(t.getMonth()+1)+'月'+t.getDate()+'日'+(t.getHours()>12?'下午':'上午')+(t.getHours()%12)+':'+t.getMinutes()+':'+t.getSeconds();
+    console.log(date);
+</script>
+
+</body>
+</html>

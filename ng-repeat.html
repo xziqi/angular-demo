@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./libs/angular.js"></script>
+</head>
+<body ng-app='myApp'>
+<ul ng-controller='myController'>
+    <li ng-repeat='(key,value) in obj'>
+        {{key}}:{{value.name}},{{value.age}}
+    </li>
+    <li ng-repeat='key in arr track by $index'>
+        {{key}}=>{{$index}}
+    </li>
+</ul>
+<script>
+    var app = angular.module('myApp',[]);
+    app.controller('myController',['$scope',function ($scope) {
+        $scope.obj={
+            xh:{name:'小红',age:18},
+            xm:{name:'小明',age:18},
+            xt:{name:'小天',age:18},
+            xh:{name:'小黑',age:18},
+            xb:{name:'小白',age:18},
+            xx:{name:'小新',age:18}
+        }
+
+        $scope.arr=[12,3,4,5,5,2,3]
+    }])
+</script>
+</body>
+</html>

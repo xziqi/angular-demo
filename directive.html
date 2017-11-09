@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .red{
+            color:red;
+        }
+        .aqua{
+            color:aqua;
+        }
+    </style>
+</head>
+<body ng-app='directiveApp'>
+<!--  4.加入自定义指令名字在指定标签-->
+<div my-btn></div>
+<div my-btn></div>
+<my-btn mystyle='red'>你好</my-btn>
+<my-btn mystyle='aqua'>你好吗</my-btn>
+
+<script id='tpl' type='text/ng-template'>
+    <div>
+    <button ng-transclude class={{mystyle}}>登录</button>
+    <p>小米热</p>
+    </div>
+</script>
+<!--1.引入文件-->
+<script src="./libs/angular.js"></script>
+<script>
+//    2.创建模块
+    var app = angular.module('directiveApp',[]);
+//    3.创建自定义指令
+    app.directive('myBtn',[function () {
+        //返回对象的属性
+        return{
+//            template:'<div><button>我的按钮</button></div>'
+            templateUrl:'tpl',
+            replace:false,
+            restrict:'ECA',
+            transclude:true,
+            scope:{mystyle:'@'}
+        }
+    }])
+</script>
+</body>
+</html>

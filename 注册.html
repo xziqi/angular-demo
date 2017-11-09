@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app='myApp'>
+<table ng-controller='myController'>
+    <tr><td>用户名：<input type="text" ng-model='username'></td></tr>
+    <!--<tr><td>用户类型：<input type="text" ng-model='usertype'></td></tr>-->
+    <tr><td>
+        <select ng-model='usertype'>
+            <option value="test01">学生</option>
+            <option value="test02">老师</option>
+            <option value="test03">校长</option>
+        </select>
+    </td></tr>
+    <tr><td>密码：<input type="text" ng-model='userpwd'></td></tr>
+    <tr><td>确认密码：<input type="text" ng-model='confirmpwd'></td></tr>
+    <tr><td>注册协议：<input type="checkbox" ng-model='isagree'></td></tr>
+    <tr><td><input type="button" value='注册' ng-click='register()'></td></tr>
+    <tr><td>{{msg}}</td></tr>
+</table>
+<script src="./libs/angular.js"></script>
+<script>
+    var app = angular.module('myApp',[]);
+    app.controller('myController',function ($scope) {
+        $scope.username=''
+        $scope.usertype=''
+        $scope.userpwd=''
+        $scope.confirmpwd=''
+        $scope.isagree=false
+        $scope.msg=''
+
+        $scope.register=function () {
+            if ($scope.username.length<6) {
+                $scope.msg='用户名不能少于6位'
+                return
+            }
+            if ($scope.userpwd.length<6) {
+                $scope.msg='密码太短不安全'
+                return
+            }
+            if ($scope.confirmpwd !==$scope.userpwd) {
+                $scope.msg='两次密码不一样，请重新输入'
+                return
+            }
+
+            var u = new User($scope.username,$scope.usertype,$scope.userpwd)
+            var result = u.save()
+            if (result) {
+                $scope.msg='注册成功！'
+            }else{
+                $scope.msg='注册失败！'
+            }
+        }
+    })
+    
+    function User(name,type,pwd) {
+        this.name=name
+        this.type=type
+        this.pwd=pwd
+    }
+    User.prototype.save=function () {
+        var str = localStorage.getItem('myusers')||'[]'
+        var arr = JSON.parse(str)
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i].name ===this.name) {
+                return
+            }
+        }
+        arr.push({name:this.name,type:this.type,pwd:this.pwd})
+        localStorage.setItem('myusers',JSON.stringify(arr))
+        return true
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id='dv'></div>
+    <script>
+      /*  function max() {
+            var args = arguments;
+            var maxNum=args[0];
+            for (var i = 1; i < args.length; i++) {
+                if (maxNum < args[i]) {
+                    maxNum=args[i];
+                }
+            }
+            return maxNum;
+        }
+        console.log(max(1, 2, 3, -9, 789, 45, 3, 0));;*/
+       /* function css() {
+            var args = arguments;
+            if (args.length === 3) {
+                args[0].style[args[1]]=args[2];
+
+            }else if (args.length === 2){
+                return args[0].style[args[1]];
+            }
+        }
+        var dv=document.getElementById('dv');
+        css(dv,'border','1px solid red');
+        css(dv,'width','200px');
+        css(dv,'height','200px');
+      console.log(css(dv, 'width'));
+      console.log(css(dv, 'height'));
+      console.log(css(dv, 'border'));*/
+ /*       function foo1() {
+           return
+            {
+                name:'1';
+            }
+        }
+      console.log(foo1());   //undefined
+
+      function foo() {
+          return{
+              name:'1'
+          }
+      }
+      console.log(foo());  //{name:'1'}*/
+        function cross(num1,num2) {
+            return num1*num2
+        }
+      console.log(cross(1, 2));
+
+        var func= new Function('a','b','return a*b');
+      console.log(func(1, 2));
+    </script>
+</body>
+</html>

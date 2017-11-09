@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./libs/angular.js"></script>
+    <style>
+        .tpl{
+            color: aqua;
+            font-size:22px;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+    angular.element(document).ready(function () {
+        var jqLite = angular.element(document.getElementById('box'));
+        jqLite.html('<div>你好啊</div>')
+        jqLite.addClass('tpl')
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="./libs/jquery.min.js"></script>
+<ul>
+    <li><a href="#find">发现音乐</a></li>
+    <li><a href="#mine">我的音乐</a></li>
+    <li><a href="#friend">我的朋友</a></li>
+</ul>
+<div id='info'></div>
+<script>
+    //监测url锚点值的变化,hashchange事件
+  window.addEventListener('hashchange',function () {
+      //location.hash获取锚点值
+      var hash=location.hash;
+      //switch判断锚点值
+      switch (hash){
+          case '#find':
+          //请求数据
+                  $.ajax({
+                      url:'./find.json',
+                      success:function (data) {
+                          $('#info').html(data.data)
+                      }
+                  })
+         /* $.get('./find.json',function (data) {
+              $('#info').html(data.data)
+          })*/
+          break;
+          case '#mine':
+              $.get('./mine.json',function (data) {
+                  $('#info').html(data.data)
+              })
+              break;
+          case '#friend':
+              $.get('./friend.json',function (data) {
+                  $('#info').html(data.data)
+              })
+              break;
+      }
+  })
+</script>
+</body>
+</html>
